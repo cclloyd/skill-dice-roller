@@ -49,12 +49,13 @@ class DiceRollerSkill(MycroftSkill):
         # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
         # self.speak('Please provide the second number.',  expect_response=True)
 
+        self.speak("amount, step: {}, {}".format(message.data.get("amount"), message.data.get("step")))
+
         total = 0
         amount = int(message.data.get("amount"))
         step = int(message.data.get("step"))
         math = ""
 
-        self.speak("amount, step: {}, {}".format(amount, step))
 
         for i in range(0, amount):
             val = randint(1, step)

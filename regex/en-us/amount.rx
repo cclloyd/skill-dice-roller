@@ -1,1 +1,1 @@
-(?P<amount>.*)
+((?P<amount>.*)|a)
