@@ -45,6 +45,13 @@ class DiceRollerSkill(MycroftSkill):
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
+        intent = IntentBuilder('DiceRollerIntent') \
+            .require('DiceRollerKeyword') \
+            .require('amount') \
+            .require('die') \
+            .build()
+        self.register_intent(intent, self.handle_d20_intent)
+
 
 
     def handle_dice_roll_intent(self, message):
@@ -60,6 +67,8 @@ class DiceRollerSkill(MycroftSkill):
             amount = 1
         if not isinstance(step, int):
             step = 20
+
+        self.speak("amount, step, die: {}, {}, die".format(amount, step, die))
 
         for i in range(0, amount):
             val = randint(1, step)
