@@ -26,12 +26,12 @@ class DiceRollerSkill(MycroftSkill):
         # dice_roll_intent = IntentBuilder("DiceRollerIntent").\
         #    require("DiceRollerKeyword").build()
 
-        d20_intent = IntentBuilder('DiceRollerIntent') \
+        d20_intent = IntentBuilder('D20Intent') \
             .require('D20Keyword') \
             .build()
         self.register_intent(d20_intent, self.handle_d20_intent)
 
-        single_intent = IntentBuilder('DiceRollerIntent') \
+        single_intent = IntentBuilder('SingleDieIntent') \
             .require('SingleRollKeyword') \
             .require('step') \
             .build()
