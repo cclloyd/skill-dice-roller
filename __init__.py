@@ -31,17 +31,17 @@ class DiceRollerSkill(MycroftSkill):
             .build()
         self.register_intent(d20_intent, self.handle_d20_intent)
 
-        single_intent = IntentBuilder('SingleDieIntent') \
-            .require('SingleRollKeyword') \
-            .require('step') \
-            .build()
-        self.register_intent(single_intent, self.handle_single_dice_roll_intent)
+        # single_intent = IntentBuilder('SingleDieIntent') \
+        #    .require('SingleRollKeyword') \
+        #    .require('step') \
+        #    .build()
+        # self.register_intent(single_intent, self.handle_single_dice_roll_intent)
 
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
             .require('amount') \
             .require('DiceDKeyword') \
-            .require('step') \
+            .optionally('step') \
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
@@ -52,9 +52,14 @@ class DiceRollerSkill(MycroftSkill):
         self.speak("amount, step: {}, {}".format(message.data.get("amount"), message.data.get("step")))
 
         total = 0
-        amount = int(message.data.get("amount"))
+        amount = message.data.get("amount")
         step = int(message.data.get("step"))
         math = ""
+
+        if (not isinstance(amount, int))
+            amount = 1
+        if (not isinstance(step, int))
+            step = 20
 
 
         for i in range(0, amount):
