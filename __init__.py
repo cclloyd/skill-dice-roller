@@ -56,9 +56,9 @@ class DiceRollerSkill(MycroftSkill):
         step = int(message.data.get("step"))
         math = ""
 
-        if (not isinstance(amount, int))
+        if (not isinstance(amount, int)):
             amount = 1
-        if (not isinstance(step, int))
+        if (not isinstance(step, int)):
             step = 20
 
 
