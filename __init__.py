@@ -65,8 +65,6 @@ class DiceRollerSkill(MycroftSkill):
                 amount = 1
 
         if step is not None:
-            if step == "six":
-                step = 6;
             step = int(step)
 
         if amount is not None:
