@@ -39,8 +39,6 @@ class DiceRollerSkill(MycroftSkill):
             .build()
         self.register_intent(d20_intent, self.handle_d20_intent)
 
-        self.register_intent(dice_roll_intent, self.handle_dice_roll_intent)
-
     def handle_dice_roll_intent(self, message):
         # self.speak_dialog("flip.coin")
         # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
@@ -50,12 +48,14 @@ class DiceRollerSkill(MycroftSkill):
 
         dialog_options = 4
         total = 0
-        amount = 1
-        step = 4
+        #amount = 1
+        step = 6
 
 
         amount = message.data.get("amount")
         step = message.data.get("step")
+        if (not isinstance(amount, int)):
+            amount = 1
 
 
 
