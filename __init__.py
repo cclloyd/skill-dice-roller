@@ -31,11 +31,11 @@ class DiceRollerSkill(MycroftSkill):
             .build()
         self.register_intent(d20_intent, self.handle_d20_intent)
 
-        # single_intent = IntentBuilder('SingleDieIntent') \
-        #    .require('SingleRollKeyword') \
-        #    .require('step') \
-        #    .build()
-        # self.register_intent(single_intent, self.handle_single_dice_roll_intent)
+        single_intent = IntentBuilder('SingleDieIntent') \
+            .require('SingleRollKeyword') \
+            .optionally('step') \
+            .build()
+        self.register_intent(single_intent, self.handle_single_dice_roll_intent)
 
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
@@ -64,7 +64,7 @@ class DiceRollerSkill(MycroftSkill):
 
 
 
-        
+
         if amount is None:
             amount = 1
         if step is None:
@@ -89,8 +89,13 @@ class DiceRollerSkill(MycroftSkill):
         # self.speak('Please provide the second number.',  expect_response=True)
 
         total = 0
-        step = int(message.data.get("step"))
+        step = message.data.get("step")
         amount = 1
+
+        if step is None:
+            step = 20
+        else:
+            step = int(step)
 
         for i in range(0, amount):
             val = randint(1, step)
