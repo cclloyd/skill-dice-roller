@@ -23,10 +23,8 @@ class DiceRollerSkill(MycroftSkill):
         self.load_data_files(dirname(__file__))
         self.load_regex_files(join(dirname(__file__), 'regex', 'en-us'))
 
-        #dice_roll_intent = IntentBuilder("DiceRollerIntent").\
+        # dice_roll_intent = IntentBuilder("DiceRollerIntent").\
         #    require("DiceRollerKeyword").build()
-
-
 
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
@@ -39,13 +37,14 @@ class DiceRollerSkill(MycroftSkill):
         d20_intent = IntentBuilder('DiceRollerIntent') \
             .require('D20Keyword') \
             .build()
-        self.register_intent(intent, self.handle_d20_intent)
+        self.register_intent(d20_intent, self.handle_d20_intent)
 
         self.register_intent(dice_roll_intent, self.handle_dice_roll_intent)
 
     def handle_dice_roll_intent(self, message):
-        #self.speak_dialog("flip.coin")
-        #self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
+        # self.speak_dialog("flip.coin")
+        # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
+        # self.speak('Please provide the second number.',  expect_response=True)
 
 
 
