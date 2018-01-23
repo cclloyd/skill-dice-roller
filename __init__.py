@@ -21,10 +21,22 @@ class DiceRollerSkill(MycroftSkill):
     # creates and registers each intent that the skill uses
     def initialize(self):
         self.load_data_files(dirname(__file__))
+        self.load_regex_files(join(dirname(__file__), 'regex', 'en-us'))
+        
+        #dice_roll_intent = IntentBuilder("DiceRollerIntent").\
+        #    require("DiceRollerKeyword").build()
 
-        coin_flip_intent = IntentBuilder("DiceRollerIntent").\
-            require("DiceRollerKeyword").build()
-        self.register_intent(coin_flip_intent, self.handle_coin_flip_intent)
+
+
+        intent = IntentBuilder('DiceRollerIntent') \
+            .require('DiceRollerKeyword') \
+            .require('amount') \
+            .require('DKeyword') \
+            .require('step') \
+            .build()
+        self.register_intent(intent, self.handle_dice_roll_intent)
+
+        self.register_intent(dice_roll_intent, self.handle_dice_roll_intent)
 
     # The "handle_xxxx_intent" functions define Mycroft's behavior when
     # each of the skill's intents is triggered: in this case, he simply
@@ -32,18 +44,27 @@ class DiceRollerSkill(MycroftSkill):
     # actually speak the text it's passed--instead, that text is the filename
     # of a file in the dialog folder, and Mycroft speaks its contents when
     # the method is called.
-    def handle_coin_flip_intent(self, message):
+    def handle_dice_roll_intent(self, message):
         #self.speak_dialog("flip.coin")
         #self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
+
+
 
         dialog_options = 4
         total = 0
         amount = 1
         step = 4
+
+
+        amount = message.data.get("amount")
+        step = message.data.get("step")
+
+
+
         for i in range(0, amount):
             total += random.randint(1,step)
 
-        self.speak(format("it's %d", total))
+        self.speak_dialog(format("it's %d", total))
     # The "stop" method defines what Mycroft does when told to stop during
     # the skill's execution. In this case, since the skill's functionality
     # is extremely simple, the method just contains the keyword "pass", which
