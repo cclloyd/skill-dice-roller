@@ -37,7 +37,7 @@ class DiceRollerSkill(MycroftSkill):
         d20_intent = IntentBuilder('DiceRollerIntent') \
             .require('D20Keyword') \
             .build()
-        # self.register_intent(d20_intent, self.handle_d20_intent)
+        self.register_intent(d20_intent, self.handle_d20_intent)
 
     def handle_dice_roll_intent(self, message):
         # self.speak_dialog("flip.coin")
