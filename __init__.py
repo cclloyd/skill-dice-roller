@@ -54,20 +54,13 @@ class DiceRollerSkill(MycroftSkill):
         amount = int(message.data.get("amount"))
         step = int(message.data.get("step"))
         math = ""
-        if amount == "a":
-            amount = 1
-        if not isinstance(step, int):
-            step = 20
 
-        self.speak("amount, step: {}, {}, die".format(amount, step))
+        self.speak("amount, step: {}, {}".format(amount, step))
 
         for i in range(0, amount):
             val = randint(1, step)
             total += val
-            if i < amount:
-                math += "{} + ".format(val)
-            else :
-                math += "{}".format(val)
+            math += "{} + ".format(val)
 
         self.speak("dice roll: {}".format(total))
         if amount > 1:
