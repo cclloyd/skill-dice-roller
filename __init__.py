@@ -62,7 +62,7 @@ class DiceRollerSkill(MycroftSkill):
         if (not isinstance(step, int)):
             step = 20
 
-        self.speak("amount, step: {}, {}".format(message.data.get("amount"), message.data.get("step")))
+        self.speak("amount, step: {}, {}".format(amount, step))
 
         for i in range(0, amount):
             val = randint(1, step)
