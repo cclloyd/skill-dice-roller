@@ -37,7 +37,7 @@ class DiceRollerSkill(MycroftSkill):
         d20_intent = IntentBuilder('DiceRollerIntent') \
             .require('D20Keyword') \
             .build()
-        self.register_intent(d20_intent, self.handle_d20_intent)
+        # self.register_intent(d20_intent, self.handle_d20_intent)
 
     def handle_dice_roll_intent(self, message):
         # self.speak_dialog("flip.coin")
@@ -50,7 +50,7 @@ class DiceRollerSkill(MycroftSkill):
         total = 0
         # amount = 1
         step = 6
-        
+
         amount = message.data.get("amount")
         amount = int(amount)
         step = message.data.get("step")
@@ -58,9 +58,6 @@ class DiceRollerSkill(MycroftSkill):
 
         if not isinstance(amount, int):
             amount = 1
-
-        if not isinstance(step, int):
-            self.speak("step is not an integer {}")
 
         for i in range(0, amount):
             total = randint(1, step)
