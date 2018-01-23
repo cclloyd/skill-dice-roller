@@ -15,7 +15,7 @@ class DiceRollerSkill(MycroftSkill):
 
     # The constructor of the skill, which calls MycroftSkill's constructor
     def __init__(self):
-        super(CoinFlipSkill, self).__init__(name="DiceRollerSkill")
+        super(DiceRollerSkill, self).__init__(name="DiceRollerSkill")
 
     # This method loads the files needed for the skill's functioning, and
     # creates and registers each intent that the skill uses
