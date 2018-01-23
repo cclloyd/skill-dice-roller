@@ -35,7 +35,7 @@ class DiceRollerSkill(MycroftSkill):
             .require('SingleRollKeyword') \
             .optionally('step') \
             .build()
-        self.register_intent(single_intent, self.handle_single_dice_roll_intent)
+        #self.register_intent(single_intent, self.handle_single_dice_roll_intent)
 
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
