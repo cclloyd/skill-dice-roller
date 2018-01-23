@@ -58,8 +58,7 @@ class DiceRollerSkill(MycroftSkill):
         math = ""
         if not isinstance(amount, int):
             amount = 1
-
-        if die == "die":
+        if not isinstance(step, int):
             step = 20
 
         for i in range(0, amount):
@@ -73,18 +72,6 @@ class DiceRollerSkill(MycroftSkill):
         self.speak("dice roll: {}".format(total))
         if amount > 1:
             self.speak("{}".format(math))
-
-    def handle_dice_single_roll_intent(self, message):
-        # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
-        # self.speak('Please provide the second number.',  expect_response=True)
-
-        total = 0
-        step = int(message.data.get("step"))
-
-        val = randint(1, step)
-        total += val
-
-        self.speak("single roll: {}".format(total))
 
     def handle_d20_intent(self, message):
 
