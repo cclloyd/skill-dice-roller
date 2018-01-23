@@ -39,9 +39,9 @@ class DiceRollerSkill(MycroftSkill):
 
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
-            .optionally('amount') \
+            .require('amount') \
             .require('DiceDKeyword') \
-            .optionally('step') \
+            .require('step') \
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
