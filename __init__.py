@@ -60,7 +60,7 @@ class DiceRollerSkill(MycroftSkill):
 
 
         for i in range(0, amount):
-            total += random.randint(1,step)
+            total += randint(1,step)
 
         self.speak_dialog(format("it's %d", total))
 
