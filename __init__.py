@@ -39,9 +39,9 @@ class DiceRollerSkill(MycroftSkill):
 
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
-            .require('amount') \
+            .optionally('amount') \
             .require('DiceDKeyword') \
-            .require('step') \
+            .optionally('step') \
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
@@ -49,6 +49,7 @@ class DiceRollerSkill(MycroftSkill):
         # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
         # self.speak('Please provide the second number.',  expect_response=True)
 
+        self.speak("amount, step: {}, {}".format(amount, step))
 
         total = 0
         amount = message.data.get("amount")
