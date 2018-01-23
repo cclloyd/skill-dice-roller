@@ -30,7 +30,13 @@ class DiceRollerSkill(MycroftSkill):
             .require('D20Keyword') \
             .build()
         self.register_intent(d20_intent, self.handle_d20_intent)
-        
+
+        single_intent = IntentBuilder('DiceRollerIntent') \
+            .require('SingleRollKeyword') \
+            .require('step') \
+            .build()
+        self.register_intent(single_intent, self.handle_dice_single_roll_intent)
+
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
             .require('amount') \
@@ -57,14 +63,26 @@ class DiceRollerSkill(MycroftSkill):
             total += val
             math += "{} + ".format(val)
 
-        self.speak("it's {}".format(total))
+        self.speak("dice roll: {}".format(total))
         self.speak("{}".format(math))
+
+    def handle_dice_single_roll_intent(self, message):
+        # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
+        # self.speak('Please provide the second number.',  expect_response=True)
+
+        total = 0
+        step = int(message.data.get("step"))
+
+        val = randint(1, step)
+        total += val
+
+        self.speak("single roll: {}".format(total))
 
     def handle_d20_intent(self, message):
 
         total = randint(1, 20)
 
-        self.speak(format("it's {}".format(total)))
+        self.speak(format("d20: {}".format(total)))
     # The "stop" method defines what Mycroft does when told to stop during
     # the skill's execution. In this case, since the skill's functionality
     # is extremely simple, the method just contains the keyword "pass", which
