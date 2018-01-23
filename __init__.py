@@ -69,6 +69,7 @@ class DiceRollerSkill(MycroftSkill):
                 if len(step) == 1:
                     step = "0" + step
             step = int(step)
+
         if amount is not None:
             if isinstance(step, basestring):
                 if len(amount) == 1:
