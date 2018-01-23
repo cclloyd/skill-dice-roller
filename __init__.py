@@ -54,7 +54,7 @@ class DiceRollerSkill(MycroftSkill):
         total = 0
         math = ""
 
-        self.speak("amount, step: {}, {}".format(amount, step))
+        # self.speak("amount, step: {}, {}".format(amount, step))
 
         if step is None:
             if amount is None:
@@ -80,7 +80,7 @@ class DiceRollerSkill(MycroftSkill):
 
 
 
-        self.speak("amount, step: {}, {}".format(amount, step))
+        # self.speak("amount, step: {}, {}".format(amount, step))
 
         for i in range(0, amount):
             val = randint(1, step)
@@ -89,7 +89,7 @@ class DiceRollerSkill(MycroftSkill):
 
         if amount > 1:
             self.speak("{}".format(math))
-        self.speak("dice roll: {}".format(total))
+        self.speak("{}".format(total))
 
 
     def handle_single_dice_roll_intent(self, message):
@@ -109,13 +109,13 @@ class DiceRollerSkill(MycroftSkill):
             val = randint(1, step)
             total += val
 
-        self.speak("single roll: {}".format(total))
+        self.speak("{}".format(total))
 
     def handle_d20_intent(self, message):
 
         total = randint(1, 20)
 
-        self.speak(format("d20: {}".format(total)))
+        self.speak(format("{}".format(total)))
     # The "stop" method defines what Mycroft does when told to stop during
     # the skill's execution. In this case, since the skill's functionality
     # is extremely simple, the method just contains the keyword "pass", which
