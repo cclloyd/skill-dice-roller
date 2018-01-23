@@ -5,7 +5,7 @@ import requests
 from os.path import dirname, join
 from mycroft.util.log import getLogger
 from mycroft.util import play_mp3
-import random as random
+from random import randint
 
 # Logger: used for debug lines, like "LOGGER.debug(xyz)". These
 # statements will show up in the command line when running Mycroft.
@@ -60,17 +60,17 @@ class DiceRollerSkill(MycroftSkill):
 
 
         for i in range(0, amount):
-            total += random.randint(1,step)
+            total += randint(1,step)
 
-        self.speak_dialog(format("it's %d", total))
+        self.speak_dialog("it's %d".format(total))
 
     def handle_d20_intent(self, message):
 
         total = 0
 
-        total += random.randint(1,20)
+        total += randint(1,20)
 
-        self.speak_dialog(format("it's %d", total))
+        self.speak_dialog(format("it's %d".format(total))
 
 
 
