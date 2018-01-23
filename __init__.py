@@ -26,6 +26,11 @@ class DiceRollerSkill(MycroftSkill):
         # dice_roll_intent = IntentBuilder("DiceRollerIntent").\
         #    require("DiceRollerKeyword").build()
 
+        d20_intent = IntentBuilder('DiceRollerIntent') \
+            .require('D20Keyword') \
+            .build()
+        self.register_intent(d20_intent, self.handle_d20_intent)
+        
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
             .require('amount') \
@@ -34,27 +39,15 @@ class DiceRollerSkill(MycroftSkill):
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
-        #d20_intent = IntentBuilder('DiceRollerIntent') \
-        #    .require('D20Keyword') \
-        #    .build()
-        #self.register_intent(d20_intent, self.handle_d20_intent)
+
 
     def handle_dice_roll_intent(self, message):
-        # self.speak_dialog("flip.coin")
         # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
         # self.speak('Please provide the second number.',  expect_response=True)
 
-
-
-        dialog_options = 4
         total = 0
-        # amount = 1
-        step = 6
-
-        amount = message.data.get("amount")
-        amount = int(amount)
-        step = message.data.get("step")
-        step = int(step)
+        amount = int(message.data.get("amount"))
+        step = int(message.data.get("step"))
         math = ""
         if not isinstance(amount, int):
             amount = 1
