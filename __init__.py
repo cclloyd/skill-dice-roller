@@ -69,9 +69,10 @@ class DiceRollerSkill(MycroftSkill):
             total += val
             math += "{} + ".format(val)
 
-        self.speak("dice roll: {}".format(total))
         if amount > 1:
             self.speak("{}".format(math))
+        self.speak("dice roll: {}".format(total))
+
 
     def handle_single_dice_roll_intent(self, message):
         # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
