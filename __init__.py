@@ -70,17 +70,7 @@ class DiceRollerSkill(MycroftSkill):
 
         total += randint(1,20)
 
-        self.speak_dialog(format("it's %d".format(total))
-
-
-
-
-
-
-
-
-
-
+        self.speak_dialog(format("it's %d".format(total)))
     # The "stop" method defines what Mycroft does when told to stop during
     # the skill's execution. In this case, since the skill's functionality
     # is extremely simple, the method just contains the keyword "pass", which
