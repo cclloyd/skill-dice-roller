@@ -40,8 +40,8 @@ class DiceRollerSkill(MycroftSkill):
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
             .require('amount') \
-            .require('die') \
-            .optionally('step') \
+            .require('DiceDKeyword') \
+            .require('step') \
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
@@ -52,14 +52,13 @@ class DiceRollerSkill(MycroftSkill):
         total = 0
         amount = int(message.data.get("amount"))
         step = int(message.data.get("step"))
-        die = message.data.get("die");
         math = ""
         if not isinstance(amount, int):
             amount = 1
         if not isinstance(step, int):
             step = 20
 
-        self.speak("amount, step, die: {}, {}, die".format(amount, step, die))
+        self.speak("amount, step: {}, {}, die".format(amount, step))
 
         for i in range(0, amount):
             val = randint(1, step)
