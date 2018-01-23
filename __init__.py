@@ -50,13 +50,11 @@ class DiceRollerSkill(MycroftSkill):
         total = 0
         # amount = 1
         step = 6
-
-
+        
         amount = message.data.get("amount")
-        number = int(amount)
+        amount = int(amount)
         step = message.data.get("step")
-        self.speak("step is {}".format(step))
-        self.speak("amount is {}".format(amount))
+        step = int(step)
 
         if not isinstance(amount, int):
             amount = 1
@@ -64,10 +62,8 @@ class DiceRollerSkill(MycroftSkill):
         if not isinstance(step, int):
             self.speak("step is not an integer {}")
 
-        for i in range(0, number):
-            dice = int(step)
-            val = randint(1, dice)
-            total = total + val
+        for i in range(0, amount):
+            total = randint(1, step)
 
         self.speak("it's {}".format(total))
 
