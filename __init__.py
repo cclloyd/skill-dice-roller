@@ -54,6 +54,8 @@ class DiceRollerSkill(MycroftSkill):
 
         amount = message.data.get("amount")
         step = message.data.get("step")
+        self.speak_dialog("step is {}".format(step))
+
         if not isinstance(amount, int):
             amount = 1
 
@@ -66,9 +68,7 @@ class DiceRollerSkill(MycroftSkill):
 
     def handle_d20_intent(self, message):
 
-        total = 0
-
-        total += randint(1, 20)
+        total = randint(1, 20)
 
         self.speak_dialog(format("it's {}".format(total)))
     # The "stop" method defines what Mycroft does when told to stop during
