@@ -22,7 +22,7 @@ class DiceRollerSkill(MycroftSkill):
     def initialize(self):
         self.load_data_files(dirname(__file__))
         self.load_regex_files(join(dirname(__file__), 'regex', 'en-us'))
-        
+
         #dice_roll_intent = IntentBuilder("DiceRollerIntent").\
         #    require("DiceRollerKeyword").build()
 
@@ -36,14 +36,13 @@ class DiceRollerSkill(MycroftSkill):
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
 
+        d20_intent = IntentBuilder('DiceRollerIntent') \
+            .require('D20Keyword') \
+            .build()
+        self.register_intent(intent, self.handle_d20_intent)
+
         self.register_intent(dice_roll_intent, self.handle_dice_roll_intent)
 
-    # The "handle_xxxx_intent" functions define Mycroft's behavior when
-    # each of the skill's intents is triggered: in this case, he simply
-    # speaks a response. Note that the "speak_dialog" method doesn't
-    # actually speak the text it's passed--instead, that text is the filename
-    # of a file in the dialog folder, and Mycroft speaks its contents when
-    # the method is called.
     def handle_dice_roll_intent(self, message):
         #self.speak_dialog("flip.coin")
         #self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
@@ -65,6 +64,24 @@ class DiceRollerSkill(MycroftSkill):
             total += random.randint(1,step)
 
         self.speak_dialog(format("it's %d", total))
+
+    def handle_d20_intent(self, message):
+
+        total = 0
+
+        total += random.randint(1,20)
+
+        self.speak_dialog(format("it's %d", total))
+
+
+
+
+
+
+
+
+
+
     # The "stop" method defines what Mycroft does when told to stop during
     # the skill's execution. In this case, since the skill's functionality
     # is extremely simple, the method just contains the keyword "pass", which
