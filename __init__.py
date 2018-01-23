@@ -33,7 +33,6 @@ class DiceRollerSkill(MycroftSkill):
 
         single_intent = IntentBuilder('SingleDieIntent') \
             .require('SingleRollKeyword') \
-            .require('DiceDKeyword') \
             .require('step') \
             .build()
         self.register_intent(single_intent, self.handle_single_dice_roll_intent)
