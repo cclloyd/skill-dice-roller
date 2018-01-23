@@ -61,6 +61,10 @@ class DiceRollerSkill(MycroftSkill):
         if amount is not None:
             amount = int(amount)
 
+        if step is None:
+            step = amount
+            amount = 1
+
         self.speak("amount, step: {}, {}".format(amount, step))
 
         for i in range(0, amount):
