@@ -37,6 +37,13 @@ class DiceRollerSkill(MycroftSkill):
         #    .build()
         #self.register_intent(single_intent, self.handle_dice_single_roll_intent)
 
+        intent = IntentBuilder('D20Intent') \
+            .require('DiceRollerKeyword') \
+            .require('amount') \
+            .require('die') \
+            .build()
+        self.register_intent(intent, self.handle_d20_intent)
+
         intent = IntentBuilder('DiceRollerIntent') \
             .require('DiceRollerKeyword') \
             .require('amount') \
@@ -44,15 +51,6 @@ class DiceRollerSkill(MycroftSkill):
             .require('step') \
             .build()
         self.register_intent(intent, self.handle_dice_roll_intent)
-
-        intent = IntentBuilder('DiceRollerIntent') \
-            .require('DiceRollerKeyword') \
-            .require('amount') \
-            .require('die') \
-            .build()
-        self.register_intent(intent, self.handle_d20_intent)
-
-
 
     def handle_dice_roll_intent(self, message):
         # self.process = play_mp3(join(dirname(__file__), "mp3", "coin-flip.mp3"))
