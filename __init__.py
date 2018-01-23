@@ -55,6 +55,7 @@ class DiceRollerSkill(MycroftSkill):
         amount = message.data.get("amount")
         # step = message.data.get("step")
         self.speak("step is {}".format(step))
+        self.speak("amount is {}".format(amount))
 
         if not isinstance(amount, int):
             amount = 1
